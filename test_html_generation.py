@@ -9,11 +9,11 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'questions': [
                 {
-                    'caption': 'Name',
+                    'caption': 'Superhuman Name',
                     'type': 'textbox',
                 },
                 {
-                    'caption': 'Email',
+                    'caption': 'Real Name',
                     'type': 'textbox',
                 },
             ],
@@ -27,8 +27,8 @@ class TestHtmlGeneration(unittest.TestCase):
     <body>
         <p>Superhero Registration Act</p>
         <form action="register">
-            Name: <input type="text" name="name"/><br/>
-            Email: <input type="text" name="email"/><br/>
+            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+            Real Name: <input type="text" name="real_name"/><br/>
         </form>
     </body>
 </html>'''
@@ -39,11 +39,11 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'questions': [
                 {
-                    'caption': 'Name',
+                    'caption': 'Superhuman Name',
                     'type': 'textbox',
                 },
                 {
-                    'caption': 'Id',
+                    'caption': 'Real Name',
                     'type': 'textbox',
                 },
                 {
@@ -66,8 +66,8 @@ class TestHtmlGeneration(unittest.TestCase):
     <body>
         <p>Superhero Registration Act</p>
         <form action="register">
-            Name: <input type="text" name="name"/><br/>
-            Id: <input type="text" name="id"/><br/>
+            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+            Real Name: <input type="text" name="real_name"/><br/>
             Superpower:<br/>
             <input type="radio" name="superpower" value="flying"/>Flying<br/>
             <input type="radio" name="superpower" value="invisibility"/>Invisibility<br/>
