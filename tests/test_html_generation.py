@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-import html_generation
+import shrapy.html_generation as html
 
 
 class TestHtmlGeneration(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestHtmlGeneration(unittest.TestCase):
         </form>
     </body>
 </html>'''
-        self.assertEqual(expected, html_generation.generate(schema))
+        self.assertEqual(expected, html.generate(schema))
 
     def test_schema_with_checkbox(self):
         schema = {
@@ -78,7 +78,7 @@ class TestHtmlGeneration(unittest.TestCase):
         </form>
     </body>
 </html>'''
-        self.assertEqual(expected, html_generation.generate(schema))
+        self.assertEqual(expected, html.generate(schema))
 
     def test_missing_title(self):
         schema = {
@@ -94,4 +94,4 @@ class TestHtmlGeneration(unittest.TestCase):
             ],
         }
         with self.assertRaises(KeyError):
-            html_generation.generate(schema)
+            html.generate(schema)
