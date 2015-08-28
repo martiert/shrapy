@@ -35,6 +35,10 @@ def extract_question(question):
 
 def generate(schema):
     title = schema['title']
+    description = ''
+    if 'description' in schema:
+        description = schema['description']
+
     questions = schema['questions']
 
     content = [extract_question(question) for question in questions]
@@ -46,10 +50,12 @@ def generate(schema):
     </header>
     <body>
         <p>{title}</p>
+        <p>{description}</p>
         <form action="register">
 {content}
         </form>
     </body>
 </html>'''.format(title=title,
+                  description=description,
                   content=textwrap.indent('\n'.join(content), 12 * ' '))
     return result

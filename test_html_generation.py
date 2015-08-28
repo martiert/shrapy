@@ -7,6 +7,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_simple_person_schema(self):
         schema = {
             'title': 'Superhero Registration Act',
+            'description': 'All super-powered individuals are required to surrender their real names to the government',
             'questions': [
                 {
                     'caption': 'Superhuman Name',
@@ -26,6 +27,7 @@ class TestHtmlGeneration(unittest.TestCase):
     </header>
     <body>
         <p>Superhero Registration Act</p>
+        <p>All super-powered individuals are required to surrender their real names to the government</p>
         <form action="register">
             Superhuman Name: <input type="text" name="superhuman_name"/><br/>
             Real Name: <input type="text" name="real_name"/><br/>
@@ -65,6 +67,7 @@ class TestHtmlGeneration(unittest.TestCase):
     </header>
     <body>
         <p>Superhero Registration Act</p>
+        <p></p>
         <form action="register">
             Superhuman Name: <input type="text" name="superhuman_name"/><br/>
             Real Name: <input type="text" name="real_name"/><br/>
