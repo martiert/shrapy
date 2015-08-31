@@ -80,6 +80,50 @@ class TestHtmlGeneration(unittest.TestCase):
 </html>'''
         self.assertEqual(expected, html.generate(schema))
 
+    def test_schema_with_checboxes(self):
+        schema = {
+            'title': 'Superhero Registration Act',
+            'questions': [
+                {
+                    'caption': 'Superhuman Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Real Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Superpower',
+                    'type': 'checkbox',
+                    'alternatives': [
+                        'Flying',
+                        'Invisibility',
+                        'Superstrength',
+                    ],
+                },
+            ],
+        }
+
+        expected = '''<html>
+    <meta charset="UTF-8"/>
+    <header>
+        <title>Superhero Registration Act</title>
+    </header>
+    <body>
+        <p>Superhero Registration Act</p>
+        <p></p>
+        <form action="register">
+            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+            Real Name: <input type="text" name="real_name"/><br/>
+            Superpower:<br/>
+            <input type="checkbox" name="superpower" value="flying"/>Flying<br/>
+            <input type="checkbox" name="superpower" value="invisibility"/>Invisibility<br/>
+            <input type="checkbox" name="superpower" value="superstrength"/>Superstrength<br/>
+        </form>
+    </body>
+</html>'''
+        self.assertEqual(expected, html.generate(schema))
+
     def test_missing_title(self):
         schema = {
             'questions': [
@@ -144,4 +188,28 @@ class TestHtmlGeneration(unittest.TestCase):
         }
 
         with self.assertRaisesRegex(html.AlternativesMissingError, 'Missing radio button alternatives.*Superpower.*'):
+            html.generate(schema)
+
+    def test_missing_no_alternatives_on_checkbox(self):
+        schema = {
+            'title': 'Superhero Registration Act',
+            'questions': [
+                {
+                    'caption': 'Superhuman Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Real Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Superpower',
+                    'type': 'checkbox',
+                    'alternatives': [
+                    ],
+                },
+            ],
+        }
+
+        with self.assertRaisesRegex(html.AlternativesMissingError, 'Missing checkbox alternatives.*Superpower.*'):
             html.generate(schema)

@@ -26,6 +26,13 @@ def get_radio_input(alternative, name):
                                                                                           alternative=alternative)
 
 
+def get_checkbox_input(alternative, name):
+    value = alternative.lower().replace(' ', '_')
+    return '<input type="checkbox" name="{name}" value="{value}"/>{alternative}<br/>'.format(name=name,
+                                                                                             value=value,
+                                                                                             alternative=alternative)
+
+
 def textbox_question(question):
     caption = question['caption']
     name = caption.lower().replace(' ', '_')
@@ -46,10 +53,23 @@ def radio_question(question):
                    inputs='\n'.join(get_radio_input(alternative, name) for alternative in alternatives))
 
 
+def checkbox_question(question):
+    name = question['caption'].lower().replace(' ', '_')
+    alternatives = question['alternatives']
+
+    if not alternatives:
+        raise AlternativesMissingError('checkbox', question['caption'])
+
+    return '''{caption}:<br/>
+{inputs}'''.format(caption=question['caption'],
+                   inputs='\n'.join(get_checkbox_input(alternative, name) for alternative in alternatives))
+
+
 def extract_question(question):
     extract_type = {
         'textbox': textbox_question,
         'radio': radio_question,
+        'checkbox': checkbox_question,
     }
     try:
         type = question['type']
