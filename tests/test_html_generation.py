@@ -21,10 +21,10 @@ class TestHtmlGeneration(unittest.TestCase):
         }
 
         expected = '''<html>
-    <meta charset="UTF-8"/>
-    <header>
+    <head>
+        <meta charset="UTF-8"/>
         <title>Superhero Registration Act</title>
-    </header>
+    </head>
     <body>
         <p>Superhero Registration Act</p>
         <p>All super-powered individuals are required to surrender their real names to the government</p>
@@ -61,10 +61,10 @@ class TestHtmlGeneration(unittest.TestCase):
         }
 
         expected = '''<html>
-    <meta charset="UTF-8"/>
-    <header>
+    <head>
+        <meta charset="UTF-8"/>
         <title>Superhero Registration Act</title>
-    </header>
+    </head>
     <body>
         <p>Superhero Registration Act</p>
         <p></p>
@@ -105,10 +105,10 @@ class TestHtmlGeneration(unittest.TestCase):
         }
 
         expected = '''<html>
-    <meta charset="UTF-8"/>
-    <header>
+    <head>
+        <meta charset="UTF-8"/>
         <title>Superhero Registration Act</title>
-    </header>
+    </head>
     <body>
         <p>Superhero Registration Act</p>
         <p></p>

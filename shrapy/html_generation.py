@@ -94,10 +94,10 @@ def generate(schema):
     content = [extract_question(question) for question in questions]
 
     result = '''<html>
-    <meta charset="UTF-8"/>
-    <header>
+    <head>
+        <meta charset="UTF-8"/>
         <title>{title}</title>
-    </header>
+    </head>
     <body>
         <p>{title}</p>
         <p>{description}</p>
