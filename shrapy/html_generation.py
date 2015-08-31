@@ -19,6 +19,13 @@ class AlternativesMissingError(Exception):
                                                                              question=self._name)
 
 
+def get_description(question):
+    try:
+        return '\n<h3>%s</h3>' % question['description']
+    except KeyError:
+        return ''
+
+
 def get_radio_input(alternative, name):
     value = alternative.lower().replace(' ', '_')
     return '<input type="radio" name="{name}" value="{value}"/>{alternative}<br/>'.format(name=name,
@@ -48,8 +55,9 @@ def radio_question(question):
     if not alternatives:
         raise AlternativesMissingError('radio button', question['caption'])
 
-    return '''{caption}:<br/>
+    return '''{caption}:<br/>{description}
 {inputs}'''.format(caption=question['caption'],
+                   description=get_description(question),
                    inputs='\n'.join(get_radio_input(alternative, name) for alternative in alternatives))
 
 
@@ -60,8 +68,9 @@ def checkbox_question(question):
     if not alternatives:
         raise AlternativesMissingError('checkbox', question['caption'])
 
-    return '''{caption}:<br/>
+    return '''{caption}:<br/>{description}
 {inputs}'''.format(caption=question['caption'],
+                   description=get_description(question),
                    inputs='\n'.join(get_checkbox_input(alternative, name) for alternative in alternatives))
 
 
