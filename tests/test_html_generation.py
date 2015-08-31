@@ -36,7 +36,7 @@ class TestHtmlGeneration(unittest.TestCase):
 </html>'''
         self.assertEqual(expected, html.generate(schema))
 
-    def test_schema_with_checkbox(self):
+    def test_schema_with_radio(self):
         schema = {
             'title': 'Superhero Registration Act',
             'questions': [
@@ -50,7 +50,7 @@ class TestHtmlGeneration(unittest.TestCase):
                 },
                 {
                     'caption': 'Superpower',
-                    'type': 'checkbox',
+                    'type': 'radio',
                     'alternatives': [
                         'Flying',
                         'Invisibility',
@@ -93,5 +93,55 @@ class TestHtmlGeneration(unittest.TestCase):
                 },
             ],
         }
-        with self.assertRaises(KeyError):
+        with self.assertRaisesRegex(html.MissingRequiredFieldError, 'Missing.*title.*'):
+            html.generate(schema)
+
+    def test_missing_type_on_question(self):
+        schema = {
+            'title': 'Superhero Registration Act',
+            'questions': [
+                {
+                    'caption': 'Superhuman Name',
+                },
+                {
+                    'caption': 'Real Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Superpower',
+                    'type': 'radio',
+                    'alternatives': [
+                        'Flying',
+                        'Invisibility',
+                        'Superstrength',
+                    ],
+                },
+            ],
+        }
+
+        with self.assertRaisesRegex(html.MissingRequiredFieldError, 'Missing.*type.*'):
+            html.generate(schema)
+
+    def test_missing_no_alternatives_on_radio_buttons(self):
+        schema = {
+            'title': 'Superhero Registration Act',
+            'questions': [
+                {
+                    'caption': 'Superhuman Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Real Name',
+                    'type': 'textbox',
+                },
+                {
+                    'caption': 'Superpower',
+                    'type': 'radio',
+                    'alternatives': [
+                    ],
+                },
+            ],
+        }
+
+        with self.assertRaisesRegex(html.AlternativesMissingError, 'Missing radio button alternatives.*Superpower.*'):
             html.generate(schema)

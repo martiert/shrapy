@@ -1,6 +1,24 @@
 import textwrap
 
 
+class MissingRequiredFieldError(Exception):
+    def __init__(self, field):
+        self._field = field
+
+    def __str__(self):
+        return 'Missing required field: {field}'.format(field=self._field)
+
+
+class AlternativesMissingError(Exception):
+    def __init__(self, boxtype, name):
+        self._boxtype = boxtype
+        self._name = name
+
+    def __str__(self):
+        return 'Missing {type} alternatives for question: {question}'.format(type=self._boxtype,
+                                                                             question=self._name)
+
+
 def get_radio_input(alternative, name):
     value = alternative.lower().replace(' ', '_')
     return '<input type="radio" name="{name}" value="{value}"/>{alternative}<br/>'.format(name=name,
@@ -16,9 +34,12 @@ def textbox_question(question):
                                                                        name=name)
 
 
-def checkbox_question(question):
+def radio_question(question):
     name = question['caption'].lower().replace(' ', '_')
     alternatives = question['alternatives']
+
+    if not alternatives:
+        raise AlternativesMissingError('radio button', question['caption'])
 
     return '''{caption}:<br/>
 {inputs}'''.format(caption=question['caption'],
@@ -28,13 +49,22 @@ def checkbox_question(question):
 def extract_question(question):
     extract_type = {
         'textbox': textbox_question,
-        'checkbox': checkbox_question,
+        'radio': radio_question,
     }
-    return extract_type[question['type']](question)
+    try:
+        type = question['type']
+    except KeyError:
+        raise MissingRequiredFieldError('type')
+
+    return extract_type[type](question)
 
 
 def generate(schema):
-    title = schema['title']
+    try:
+        title = schema['title']
+    except KeyError:
+        raise MissingRequiredFieldError('title')
+
     description = ''
     if 'description' in schema:
         description = schema['description']
