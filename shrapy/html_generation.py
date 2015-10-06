@@ -88,7 +88,9 @@ def extract_entry(entry):
     return extract_type[type](entry)
 
 def extract_block(block):
-    return '\n'.join(extract_entry(entry) for entry in block['block'])
+    return '''<div class="block">
+{entries}
+</div>'''.format(entries=textwrap.indent('\n'.join(extract_entry(entry) for entry in block['block']), 4*' '))
 
 
 def generate(schema):

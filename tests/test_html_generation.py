@@ -33,8 +33,10 @@ class TestHtmlGeneration(unittest.TestCase):
         <p>Superhero Registration Act</p>
         <p>All super-powered individuals are required to surrender their real names to the government</p>
         <form action="register">
-            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
-            Real Name: <input type="text" name="real_name"/><br/>
+            <div class="block">
+                Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+                Real Name: <input type="text" name="real_name"/><br/>
+            </div>
         </form>
     </body>
 </html>'''
@@ -81,18 +83,22 @@ class TestHtmlGeneration(unittest.TestCase):
         <p>Superhero Registration Act</p>
         <p></p>
         <form action="register">
-            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
-            Real Name: <input type="text" name="real_name"/><br/>
-            Superpower:<br/>
-            <input type="radio" name="superpower" value="flying"/>Flying<br/>
-            <input type="radio" name="superpower" value="invisibility"/>Invisibility<br/>
-            <input type="radio" name="superpower" value="superstrength"/>Superstrength<br/>
+            <div class="block">
+                Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+                Real Name: <input type="text" name="real_name"/><br/>
+            </div>
+            <div class="block">
+                Superpower:<br/>
+                <input type="radio" name="superpower" value="flying"/>Flying<br/>
+                <input type="radio" name="superpower" value="invisibility"/>Invisibility<br/>
+                <input type="radio" name="superpower" value="superstrength"/>Superstrength<br/>
+            </div>
         </form>
     </body>
 </html>'''
         self.assertEqual(expected, html.generate(schema))
 
-    def test_schema_with_checboxes(self):
+    def test_schema_with_checkboxes(self):
         schema = {
             'title': 'Superhero Registration Act',
             'registration-info': [
@@ -133,12 +139,16 @@ class TestHtmlGeneration(unittest.TestCase):
         <p>Superhero Registration Act</p>
         <p></p>
         <form action="register">
-            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
-            Real Name: <input type="text" name="real_name"/><br/>
-            Superpower:<br/>
-            <input type="checkbox" name="superpower" value="flying"/>Flying<br/>
-            <input type="checkbox" name="superpower" value="invisibility"/>Invisibility<br/>
-            <input type="checkbox" name="superpower" value="superstrength"/>Superstrength<br/>
+            <div class="block">
+                Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+                Real Name: <input type="text" name="real_name"/><br/>
+            </div>
+            <div class="block">
+                Superpower:<br/>
+                <input type="checkbox" name="superpower" value="flying"/>Flying<br/>
+                <input type="checkbox" name="superpower" value="invisibility"/>Invisibility<br/>
+                <input type="checkbox" name="superpower" value="superstrength"/>Superstrength<br/>
+            </div>
         </form>
     </body>
 </html>'''
@@ -186,17 +196,20 @@ class TestHtmlGeneration(unittest.TestCase):
         <p>Superhero Registration Act</p>
         <p></p>
         <form action="register">
-            Superhuman Name: <input type="text" name="superhuman_name"/><br/>
-            Real Name: <input type="text" name="real_name"/><br/>
-            Superpower:<br/>
-            <h3>Hydra, I mean the government, need to know what your superpowers are</h3>
-            <input type="checkbox" name="superpower" value="flying"/>Flying<br/>
-            <input type="checkbox" name="superpower" value="invisibility"/>Invisibility<br/>
-            <input type="checkbox" name="superpower" value="superstrength"/>Superstrength<br/>
+            <div class="block">
+                Superhuman Name: <input type="text" name="superhuman_name"/><br/>
+                Real Name: <input type="text" name="real_name"/><br/>
+            </div>
+            <div class="block">
+                Superpower:<br/>
+                <h3>Hydra, I mean the government, need to know what your superpowers are</h3>
+                <input type="checkbox" name="superpower" value="flying"/>Flying<br/>
+                <input type="checkbox" name="superpower" value="invisibility"/>Invisibility<br/>
+                <input type="checkbox" name="superpower" value="superstrength"/>Superstrength<br/>
+            </div>
         </form>
     </body>
 </html>'''
-        self.maxDiff = None
         self.assertEqual(expected, html.generate(schema))
 
     def test_missing_title(self):
