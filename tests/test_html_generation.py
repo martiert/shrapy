@@ -10,12 +10,16 @@ class TestHtmlGeneration(unittest.TestCase):
             'description': 'All super-powered individuals are required to surrender their real names to the government',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
             ],
         }
@@ -41,20 +45,28 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'type': 'radio',
-                    'alternatives': [
-                        'Flying',
-                        'Invisibility',
-                        'Superstrength',
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'type': 'radio',
+                            'alternatives': [
+                                'Flying',
+                                'Invisibility',
+                                'Superstrength',
+                            ],
+                        },
                     ],
                 },
             ],
@@ -85,20 +97,28 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'type': 'checkbox',
-                    'alternatives': [
-                        'Flying',
-                        'Invisibility',
-                        'Superstrength',
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'type': 'checkbox',
+                            'alternatives': [
+                                'Flying',
+                                'Invisibility',
+                                'Superstrength',
+                            ],
+                        },
                     ],
                 },
             ],
@@ -129,21 +149,29 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'description': 'Hydra, I mean the government, need to know what your superpowers are',
-                    'type': 'checkbox',
-                    'alternatives': [
-                        'Flying',
-                        'Invisibility',
-                        'Superstrength',
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'description': 'Hydra, I mean the government, need to know what your superpowers are',
+                            'type': 'checkbox',
+                            'alternatives': [
+                                'Flying',
+                                'Invisibility',
+                                'Superstrength',
+                            ],
+                        },
                     ],
                 },
             ],
@@ -175,12 +203,16 @@ class TestHtmlGeneration(unittest.TestCase):
         schema = {
             'registration-info': [
                 {
-                    'caption': 'Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Email',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Email',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
             ],
         }
@@ -192,19 +224,27 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'type': 'radio',
-                    'alternatives': [
-                        'Flying',
-                        'Invisibility',
-                        'Superstrength',
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'type': 'radio',
+                            'alternatives': [
+                                'Flying',
+                                'Invisibility',
+                                'Superstrength',
+                            ],
+                        },
                     ],
                 },
             ],
@@ -218,17 +258,25 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'type': 'radio',
-                    'alternatives': [
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'type': 'radio',
+                            'alternatives': [
+                            ],
+                        },
                     ],
                 },
             ],
@@ -242,17 +290,25 @@ class TestHtmlGeneration(unittest.TestCase):
             'title': 'Superhero Registration Act',
             'registration-info': [
                 {
-                    'caption': 'Superhuman Name',
-                    'type': 'textbox',
+                    'block': [
+                        {
+                            'caption': 'Superhuman Name',
+                            'type': 'textbox',
+                        },
+                        {
+                            'caption': 'Real Name',
+                            'type': 'textbox',
+                        },
+                    ],
                 },
                 {
-                    'caption': 'Real Name',
-                    'type': 'textbox',
-                },
-                {
-                    'caption': 'Superpower',
-                    'type': 'checkbox',
-                    'alternatives': [
+                    'block': [
+                        {
+                            'caption': 'Superpower',
+                            'type': 'checkbox',
+                            'alternatives': [
+                            ],
+                        },
                     ],
                 },
             ],

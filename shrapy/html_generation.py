@@ -74,18 +74,21 @@ def checkbox_question(question):
                    inputs='\n'.join(get_checkbox_input(alternative, name) for alternative in alternatives))
 
 
-def extract_info(info):
+def extract_entry(entry):
     extract_type = {
         'textbox': textbox_question,
         'radio': radio_question,
         'checkbox': checkbox_question,
     }
     try:
-        type = info['type']
+        type = entry['type']
     except KeyError:
         raise MissingRequiredFieldError('type')
 
-    return extract_type[type](info)
+    return extract_type[type](entry)
+
+def extract_block(block):
+    return '\n'.join(extract_entry(entry) for entry in block['block'])
 
 
 def generate(schema):
@@ -100,7 +103,7 @@ def generate(schema):
 
     reg_info = schema['registration-info']
 
-    content = [extract_info(info) for info in reg_info]
+    content = [extract_block(info) for info in reg_info]
 
     result = '''<html>
     <head>
