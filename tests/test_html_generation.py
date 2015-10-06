@@ -8,7 +8,7 @@ class TestHtmlGeneration(unittest.TestCase):
         schema = {
             'title': 'Superhero Registration Act',
             'description': 'All super-powered individuals are required to surrender their real names to the government',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
@@ -39,7 +39,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_schema_with_radio(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
@@ -83,7 +83,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_schema_with_checboxes(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
@@ -127,7 +127,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_description_on_question(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
@@ -173,7 +173,7 @@ class TestHtmlGeneration(unittest.TestCase):
 
     def test_missing_title(self):
         schema = {
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Name',
                     'type': 'textbox',
@@ -190,7 +190,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_missing_type_on_question(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                 },
@@ -216,7 +216,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_missing_no_alternatives_on_radio_buttons(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
@@ -240,7 +240,7 @@ class TestHtmlGeneration(unittest.TestCase):
     def test_missing_no_alternatives_on_checkbox(self):
         schema = {
             'title': 'Superhero Registration Act',
-            'questions': [
+            'registration-info': [
                 {
                     'caption': 'Superhuman Name',
                     'type': 'textbox',
